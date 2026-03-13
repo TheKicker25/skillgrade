@@ -237,6 +237,12 @@ Variables are also loaded from `.env` in the skill directory. Shell values overr
 - **Validate graders first.** Use `--validate` with a reference solution before running real evals.
 - **Start small.** 3–5 well-designed tasks beat 50 noisy ones.
 
+For a comprehensive guide on writing high-quality skills, check out [skills-best-practices](https://github.com/mgechev/skills-best-practices/). You can also install the skill creator skill to help author skills:
+
+```bash
+npx skills add mgechev/skills-best-practices
+```
+
 ## License
 
 MIT
