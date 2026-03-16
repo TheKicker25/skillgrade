@@ -1,0 +1,287 @@
+{
+  "id": "skillgrade-onboarding",
+  "title": "Skillgrade Onboarding Tour",
+  "description": "Learn how Skillgrade evaluates AI agent skills — from CLI commands to grading pipelines",
+  "version": "1.0.0",
+  "audience": "New Contributors & AI Assistants",
+  "prerequisites": ["Basic TypeScript knowledge", "Familiarity with CLI tools"],
+  "steps": [
+    {
+      "id": "step-1-overview",
+      "title": "Welcome to Skillgrade",
+      "description": "Skillgrade is an evaluation framework for AI Agent Skills. It tests whether AI agents (Gemini, Claude, OpenAI Codex) can correctly discover and use agent skills. The codebase is a TypeScript CLI tool organized into commands, agents, providers, graders, and reporters.",
+      "estimatedTime": 60,
+      "focusDirectory": "",
+      "colorMode": "fileTypes"
+    },
+    {
+      "id": "step-2-cli-entry",
+      "title": "CLI Entry Point & Commands",
+      "description": "The CLI starts at bin/skillgrade.js, which calls src/skillgrade.ts for command routing. Three commands are available: 'init' generates eval.yaml configs, the default command runs evaluations, and 'preview' displays results. Presets like --smoke (5 trials) and --reliable (15 trials) control evaluation depth.",
+      "estimatedTime": 90,
+      "focusDirectory": "src",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "entry-points",
+          "name": "Entry Points",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "bin", "type": "directory" },
+            { "path": "src/skillgrade.ts", "type": "file" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "fill"
+        },
+        {
+          "id": "commands-layer",
+          "name": "Commands",
+          "color": "#3b82f6",
+          "items": [
+            { "path": "src/commands", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click skillgrade.ts to see the command router",
+          "target": "src/skillgrade.ts"
+        }
+      ]
+    },
+    {
+      "id": "step-3-config-system",
+      "title": "Configuration & Skill Detection",
+      "description": "The core/ directory handles eval.yaml parsing and skill discovery. config.ts loads YAML configs, validates them, and resolves file references. config.types.ts defines the EvalConfig, EvalTaskConfig, and ResolvedTask interfaces. skills.ts scans for SKILL.md files across standard paths (root, skills/, .agents/skills/, .claude/skills/).",
+      "estimatedTime": 90,
+      "focusDirectory": "src/core",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "config-layer",
+          "name": "Configuration",
+          "color": "#8b5cf6",
+          "items": [
+            { "path": "src/core/config.ts", "type": "file" },
+            { "path": "src/core/config.types.ts", "type": "file" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "fill"
+        },
+        {
+          "id": "skills-layer",
+          "name": "Skill Detection",
+          "color": "#10b981",
+          "items": [
+            { "path": "src/core/skills.ts", "type": "file" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "fill"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click config.types.ts to see the eval.yaml type definitions",
+          "target": "src/core/config.types.ts"
+        }
+      ]
+    },
+    {
+      "id": "step-4-agents",
+      "title": "Agent Implementations",
+      "description": "The agents/ directory contains LLM agent adapters. Each agent (Gemini, Claude, Codex) extends a BaseAgent interface and wraps its respective CLI tool. The registry.ts file provides a factory function — createAgent(name) — that returns the right agent instance.",
+      "estimatedTime": 60,
+      "focusDirectory": "src/agents",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "agent-registry",
+          "name": "Agent Registry",
+          "color": "#ef4444",
+          "items": [
+            { "path": "src/agents/registry.ts", "type": "file" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "fill"
+        },
+        {
+          "id": "agent-impls",
+          "name": "Agent Implementations",
+          "color": "#3b82f6",
+          "items": [
+            { "path": "src/agents/gemini.ts", "type": "file" },
+            { "path": "src/agents/claude.ts", "type": "file" },
+            { "path": "src/agents/codex.ts", "type": "file" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "fill"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click registry.ts to see the agent factory pattern",
+          "target": "src/agents/registry.ts"
+        }
+      ]
+    },
+    {
+      "id": "step-5-eval-pipeline",
+      "title": "Evaluation Pipeline",
+      "description": "The heart of Skillgrade: evalRunner.ts orchestrates trial execution. Each trial sets up a workspace (via Docker or local provider), runs an agent with a task instruction, then grades the output. Providers in src/providers/ handle environment setup — Docker creates ephemeral containers while local uses temp directories. Both inject skills into agent discovery paths.",
+      "estimatedTime": 120,
+      "focusDirectory": "src",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "eval-runner",
+          "name": "Eval Runner",
+          "color": "#ef4444",
+          "items": [
+            { "path": "src/evalRunner.ts", "type": "file" }
+          ],
+          "opacity": 0.8,
+          "renderStrategy": "fill"
+        },
+        {
+          "id": "providers-layer",
+          "name": "Execution Providers",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "src/providers", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click evalRunner.ts to see the trial orchestration logic",
+          "target": "src/evalRunner.ts"
+        }
+      ]
+    },
+    {
+      "id": "step-6-graders-reporters",
+      "title": "Grading & Reporting",
+      "description": "Graders evaluate agent output: DeterministicGrader runs shell commands that return JSON scores, while LLMGrader uses an AI model to evaluate against a rubric. Results are reported via the CLI reporter (formatted tables) or browser reporter (web UI on port 3847 using the embedded viewer.html). The analytics engine calculates pass_rate, pass@k, and pass^k metrics.",
+      "estimatedTime": 90,
+      "focusDirectory": "src",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "graders-layer",
+          "name": "Graders",
+          "color": "#10b981",
+          "items": [
+            { "path": "src/graders", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "reporters-layer",
+          "name": "Reporters",
+          "color": "#8b5cf6",
+          "items": [
+            { "path": "src/reporters", "type": "directory" },
+            { "path": "src/viewer.html", "type": "file" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        },
+        {
+          "id": "analytics-layer",
+          "name": "Analytics",
+          "color": "#ec4899",
+          "items": [
+            { "path": "src/analytics", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "hover-directory",
+          "description": "Hover over the graders directory to see the grading implementations",
+          "target": "src/graders"
+        }
+      ]
+    },
+    {
+      "id": "step-7-testing",
+      "title": "Test Suite",
+      "description": "Comprehensive Vitest test suite with ~15 test files covering agents, config parsing, commands, providers, graders, reporters, and analytics. Tests use vi.mock() to mock fs-extra, Docker, and shell execution. Configuration is in vitest.config.ts.",
+      "estimatedTime": 60,
+      "focusDirectory": "tests",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "test-config",
+          "name": "Test Configuration",
+          "color": "#f59e0b",
+          "items": [
+            { "path": "vitest.config.ts", "type": "file" }
+          ],
+          "opacity": 0.7,
+          "renderStrategy": "fill"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "explore",
+          "description": "Browse the test files to see how each module is tested"
+        }
+      ]
+    },
+    {
+      "id": "step-8-dogfooding",
+      "title": "Dogfooding & Examples",
+      "description": "Skillgrade eats its own dog food — eval.yaml at the repo root defines evaluations for Skillgrade's own skills. The examples/ directory contains sample skills (superlint, angular-modern) that demonstrate how to structure evaluation tasks. Templates in templates/ provide starting points for new eval configs.",
+      "estimatedTime": 60,
+      "focusDirectory": "",
+      "colorMode": "fileTypes",
+      "highlightLayers": [
+        {
+          "id": "self-eval",
+          "name": "Self-Evaluation",
+          "color": "#ef4444",
+          "items": [
+            { "path": "eval.yaml", "type": "file" }
+          ],
+          "opacity": 0.8,
+          "renderStrategy": "fill"
+        },
+        {
+          "id": "examples-layer",
+          "name": "Examples & Templates",
+          "color": "#3b82f6",
+          "items": [
+            { "path": "examples", "type": "directory" },
+            { "path": "templates", "type": "directory" }
+          ],
+          "opacity": 0.6,
+          "renderStrategy": "border"
+        }
+      ],
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click eval.yaml to see how Skillgrade evaluates itself",
+          "target": "eval.yaml"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "author": "File City Tours",
+    "createdAt": "2026-03-16",
+    "tags": ["onboarding", "architecture", "cli", "evaluation-framework"]
+  }
+}

@@ -15,6 +15,7 @@ dist/
 *.json
 !package.json
 !tsconfig.json
+!*.tour.json
 logs/
 coverage/
 
