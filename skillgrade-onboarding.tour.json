@@ -55,7 +55,7 @@
     {
       "id": "step-3-config-system",
       "title": "Configuration & Skill Detection",
-      "description": "The core/ directory handles eval.yaml parsing and skill discovery. config.ts loads YAML configs, validates them, and resolves file references. config.types.ts defines the EvalConfig, EvalTaskConfig, and ResolvedTask interfaces. skills.ts scans for SKILL.md files across standard paths (root, skills/, .agents/skills/, .claude/skills/).",
+      "description": "The core/ directory handles eval.yaml parsing and skill discovery. config.ts loads YAML configs, validates them, and resolves file references. config.types.ts defines the EvalConfig, EvalTaskConfig, and ResolvedTask interfaces. skills.ts scans for SKILL.md files across standard paths.",
       "estimatedTime": 90,
       "focusDirectory": "src/core",
       "colorMode": "fileTypes",
