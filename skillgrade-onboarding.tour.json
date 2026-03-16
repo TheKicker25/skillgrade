@@ -169,7 +169,7 @@
     {
       "id": "step-6-graders-reporters",
       "title": "Grading & Reporting",
-      "description": "Graders evaluate agent output: DeterministicGrader runs shell commands that return JSON scores, while LLMGrader uses an AI model to evaluate against a rubric. Results are reported via the CLI reporter (formatted tables) or browser reporter (web UI on port 3847 using the embedded viewer.html). The analytics engine calculates pass_rate, pass@k, and pass^k metrics.",
+      "description": "Graders evaluate agent output: DeterministicGrader runs shell commands that return JSON scores, while LLMGrader uses an AI model to evaluate against a rubric. Results are reported via the CLI reporter (formatted tables) or browser reporter.",
       "estimatedTime": 90,
       "focusDirectory": "src",
       "colorMode": "fileTypes",
@@ -275,6 +275,21 @@
           "type": "click-file",
           "description": "Click eval.yaml to see how Skillgrade evaluates itself",
           "target": "eval.yaml"
+        }
+      ]
+    },
+    {
+      "id": "step-9-summary",
+      "title": "Putting It All Together",
+      "description": "You've now seen the full Skillgrade pipeline: CLI commands route user input, the config system loads eval.yaml and detects skills, agents run tasks in isolated environments via providers, graders score the output, and reporters surface the results. To get started, check the README for setup instructions and try running 'skillgrade init' to generate your first evaluation config.",
+      "estimatedTime": 60,
+      "focusDirectory": "",
+      "colorMode": "fileTypes",
+      "interactiveActions": [
+        {
+          "type": "click-file",
+          "description": "Click README.md for setup instructions",
+          "target": "README.md"
         }
       ]
     }
